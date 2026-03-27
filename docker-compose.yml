@@ -1,0 +1,49 @@
+services:
+  # ===== MySQL Database =====
+  mysql:
+    image: mysql:8.0
+    container_name: demo1-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: demo1db
+      MYSQL_USER: demo1user
+      MYSQL_PASSWORD: demo1pass
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - demo1-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # ===== Spring Boot App =====
+  app:
+    image: nguyentanluc2280601870/demo1:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: demo1-app
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/demo1db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: demo1user
+      SPRING_DATASOURCE_PASSWORD: demo1pass
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - demo1-network
+
+volumes:
+  mysql_data:
+
+networks:
+  demo1-network:
+    driver: bridge
