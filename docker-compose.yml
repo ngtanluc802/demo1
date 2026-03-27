@@ -22,7 +22,7 @@ services:
 
   # ===== Spring Boot App =====
   app:
-    image: nguyentanluc2280601870/demo1:latest
+    image: nguyentanluc/demo1:latest
     build:
       context: .
       dockerfile: Dockerfile
