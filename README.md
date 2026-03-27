@@ -32,3 +32,8 @@ Truy cập tại: http://localhost:8080
 
 ## Docker Hub
 Image: `nguyentanluc/demo1:latest`
+
+## CI/CD
+Mỗi khi push code lên nhánh `main`, GitHub Actions sẽ tự động build và push image lên Docker Hub.
+
+> 🕐 Cập nhật lần cuối: 2026-03-27
