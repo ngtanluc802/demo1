@@ -42,8 +42,8 @@ jobs:
           dockerfile: Dockerfile
           push: true
           tags: |
-            nguyentanluc/demo1:${{ steps.tag.outputs.tag }}
-            nguyentanluc/demo1:latest
+            nguyentanluc2280601870/demo1:${{ steps.tag.outputs.tag }}
+            nguyentanluc2280601870/demo1:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -52,5 +52,5 @@ jobs:
         run: |
           echo "✅ Docker image pushed successfully!"
           echo "🏷️  Tags:"
-          echo "   - nguyentanluc/demo1:${{ steps.tag.outputs.tag }}"
-          echo "   - nguyentanluc/demo1:latest"
+          echo "   - nguyentanluc2280601870/demo1:${{ steps.tag.outputs.tag }}"
+          echo "   - nguyentanluc2280601870/demo1:latest"
