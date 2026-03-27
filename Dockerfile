@@ -25,7 +25,7 @@ RUN chown appuser:appgroup app.jar
 USER appuser
 
 # Expose port Spring Boot mặc định
-EXPOSE 8080
+EXPOSE 80
 
 # Khởi chạy ứng dụng
 ENTRYPOINT ["java", "-jar", "app.jar"]
